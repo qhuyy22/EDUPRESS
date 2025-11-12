@@ -53,11 +53,14 @@ const HomePage = () => {
         <div className="hero-content">
           <h1>Welcome to Edupress</h1>
           <p>Discover thousands of courses and start learning today!</p>
+          <a href="#courses-section" className="hero-cta">
+            Explore Courses
+          </a>
         </div>
       </section>
 
       <section className="search-filter-section">
-        <div className="container">
+        <div className="search-filter-container">
           <form onSubmit={handleSearch} className="search-form">
             <input
               type="text"
@@ -102,7 +105,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="courses-section">
+      <section className="courses-section" id="courses-section">
         <div className="container">
           {error && <Message type="error" message={error} />}
 

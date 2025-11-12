@@ -99,6 +99,8 @@ const getAllCourses = asyncHandler(async (req, res) => {
     .populate('provider', 'fullName email avatarUrl')
     .sort(sortOption);
 
+  // console.log(`Found ${courses.length} approved courses.`);
+
   res.json({
     success: true,
     count: courses.length,

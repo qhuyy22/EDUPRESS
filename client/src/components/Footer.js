@@ -4,6 +4,8 @@
  */
 
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faTwitter, faLinkedinIn, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import './Footer.css';
 
 const Footer = () => {
@@ -37,9 +39,18 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Connect With Us</h4>
           <div className="social-links">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+            <a href="" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <FontAwesomeIcon icon={faFacebookF} />
+            </a>
+            <a href="" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+            <a href="" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <FontAwesomeIcon icon={faLinkedinIn} />
+            </a>
+            <a href="" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <FontAwesomeIcon icon={faInstagram} />
+            </a>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+// const path = require('path');
 
 // Load environment variables
 dotenv.config();
@@ -43,6 +44,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// // Request logger middleware
+// app.use((req, res, next) => {
+//   console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
+//   next();
+// });
 
 // Database connection
 const connectDB = async () => {
@@ -88,6 +95,16 @@ app.use('/api/progress', progressRoutes);
 app.use('/api/lessons', lessonRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/discounts', discountRoutes);
+
+// // Serve static assets in production
+// if (process.env.NODE_ENV === 'production') {
+//   // Set static folder
+//   app.use(express.static(path.join(__dirname, '../client/build')));
+
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+//   });
+// }
 
 // Error handling middleware (must be last)
 app.use(errorHandler);

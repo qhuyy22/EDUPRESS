@@ -30,6 +30,7 @@ import NotificationsPage from '../pages/NotificationsPage';
 import RevenueReportPage from '../pages/RevenueReportPage';
 import DiscountManagementPage from '../pages/DiscountManagementPage';
 
+
 /**
  * ProtectedRoute Component
  * Redirects to login if user is not authenticated

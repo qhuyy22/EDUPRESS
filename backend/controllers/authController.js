@@ -5,7 +5,15 @@
 
 const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
+
 const User = require('../models/userModel');
+
+const otpGenerator = require('otp-generator');
+const SendMailForgotPassword = require('../utils/emailForgotPassword');
+
+const OTP = require('../models/otpModel');
 
 /**
  * Generate JWT Token
@@ -181,9 +189,109 @@ const updateProfile = asyncHandler(async (req, res) => {
   }
 });
 
+const forgotPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const findUser = await User.findOne({ email });
+
+  if (!findUser) {
+    throw new Error('Email không tồn tại');
+  }
+
+  // Generate OTP
+  const otp = otpGenerator.generate(6, {
+    digits: true,
+    lowerCaseAlphabets: false,
+    upperCaseAlphabets: false,
+    specialChars: false,
+  });
+
+  const tokenForgotPassword = jwt.sign({ email }, process.env.JWT_SECRET, {
+    expiresIn: '5m',
+  });
+
+  res.cookie('tokenForgotPassword', tokenForgotPassword, {
+    httpOnly: false,
+    secure: true,
+    maxAge: 5 * 60 * 1000, // 5 minutes
+    sameSite: 'strict',
+  });
+
+  await OTP.create({
+    otp,
+    email,
+  });
+  
+  await SendMailForgotPassword(email, otp);
+
+  return res.status(200).json({
+    success: true,
+    message: 'Mã OTP đã được gửi đến email của bạn',
+  });
+});
+
+const verifyOtp = asyncHandler(async (req, res) => {
+    const { email, otp } = req.body;
+
+    if (!email || !otp) {
+        res.status(400);
+        throw new Error('Vui lòng cung cấp email và OTP.');
+    }
+
+    const otpEntry = await OTP.findOne({ email, otp });
+
+    if (!otpEntry) {
+        res.status(400);
+        throw new Error('Mã OTP không hợp lệ hoặc đã hết hạn.');
+    }
+
+    // OTP hợp lệ, có thể xóa nó đi
+    await OTP.deleteOne({ _id: otpEntry._id });
+
+    res.status(200).json({
+        success: true,
+        message: 'Xác thực OTP thành công.',
+    });
+});
+
+const resetPassword = asyncHandler(async (req, res) => {
+    const { email, otp, password } = req.body;
+
+    if (!email || !otp || !password) {
+        res.status(400);
+        throw new Error('Vui lòng cung cấp đầy đủ thông tin.');
+    }
+
+    // Xác thực OTP một lần nữa để đảm bảo an toàn
+    const otpEntry = await OTP.findOne({ email, otp });
+    if (!otpEntry) {
+        res.status(400);
+        throw new Error('Mã OTP không hợp lệ hoặc đã hết hạn.');
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+        res.status(404);
+        throw new Error('Không tìm thấy người dùng.');
+    }
+
+    user.password = password;
+    await user.save();
+
+    // Xóa tất cả OTP của người dùng sau khi đổi mật khẩu thành công
+    await OTP.deleteMany({ email });
+
+    res.status(200).json({
+        success: true,
+        message: 'Đặt lại mật khẩu thành công.',
+    });
+});
+
 module.exports = {
   register,
   login,
   getMe,
   updateProfile,
+  forgotPassword,
+  verifyOtp,
+  resetPassword
 };

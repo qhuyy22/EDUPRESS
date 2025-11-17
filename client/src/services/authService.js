@@ -63,6 +63,24 @@ const authService = {
     const response = await api.delete('/users/account');
     return response.data;
   },
+
+  // Forgot password
+  forgotPassword: async (email) => {
+    const response = await api.post('/auth/forgot-password', email);
+    return response.data;
+  },
+
+  // Verify OTP
+  verifyOtp: async (otpData) => {
+    const response = await api.post('/auth/verify-otp', otpData);
+    return response.data;
+  },
+
+  // Reset password
+  resetPassword: async (passwordData) => {
+    const response = await api.post('/auth/reset-password', passwordData);
+    return response.data;
+  },
 };
 
 export default authService;

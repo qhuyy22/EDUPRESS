@@ -4,10 +4,13 @@
  */
 
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+
 // const path = require('path');
+
 
 // Load environment variables
 dotenv.config();
@@ -41,10 +44,10 @@ const { errorHandler } = require('./middlewares/errorMiddleware');
 const app = express();
 
 // Middleware
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cookieParser());
+app.use(cors());
 // // Request logger middleware
 // app.use((req, res, next) => {
 //   console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);

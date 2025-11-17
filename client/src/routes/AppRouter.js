@@ -20,6 +20,8 @@ import MyCoursesPage from '../pages/MyCoursesPage';
 import ProfilePage from '../pages/ProfilePage';
 import BecomeProviderPage from '../pages/BecomeProviderPage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage';
+import OtpPage from '../pages/OtpPage';
+import ResetPasswordPage from '../pages/ResetPasswordPage';
 import CourseReviewPage from '../pages/CourseReviewPage';
 import LessonPage from '../pages/LessonPage';
 import CreateCoursePage from '../pages/CreateCoursePage';
@@ -114,6 +116,8 @@ const AppRouter = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/otp" element={<OtpPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/course/:id" element={<CourseDetailPage />} />
 
             {/* Protected Routes - Admin */}

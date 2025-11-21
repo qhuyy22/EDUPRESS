@@ -31,6 +31,7 @@ import CourseManagementPage from '../pages/CourseManagementPage';
 import NotificationsPage from '../pages/NotificationsPage';
 import RevenueReportPage from '../pages/RevenueReportPage';
 import DiscountManagementPage from '../pages/DiscountManagementPage';
+import AllCoursesPage from '../pages/AllCoursesPage';
 
 
 /**
@@ -118,6 +119,8 @@ const AppRouter = () => {
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/otp" element={<OtpPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="/courses" element={<AllCoursesPage />} />
+            {/* <Route path='/course' element={} /> */}
             <Route path="/course/:id" element={<CourseDetailPage />} />
 
             {/* Protected Routes - Admin */}

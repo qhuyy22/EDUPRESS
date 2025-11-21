@@ -111,7 +111,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.course-image {
+.course-image01 {
   position: relative;
   width: 100%;
   height: 180px;
@@ -161,7 +161,7 @@
   color: white;
 }
 
-.course-content {
+.course-content01 {
   padding: 1.5rem;
 }
 
@@ -176,7 +176,7 @@
   overflow: hidden;
 }
 
-.course-description {
+.course-description02 {
   color: #666;
   font-size: 0.95rem;
   margin-bottom: 1rem;

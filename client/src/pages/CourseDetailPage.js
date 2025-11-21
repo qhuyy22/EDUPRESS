@@ -113,8 +113,8 @@ const CourseDetailPage = () => {
         <div className="container">
           <div className="course-hero-content">
             <span className="course-category-badge">{course.category}</span>
-            <h1 className="course-title">{course.title}</h1>
-            <p className="course-description">{course.description}</p>
+            <h1 className="course-title01">{course.title}</h1>
+            <p className="course-description01">{course.description}</p>
             
             <div className="course-meta">
               <div className="meta-item">

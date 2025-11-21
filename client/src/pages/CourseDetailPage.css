@@ -26,13 +26,13 @@
   margin-bottom: 1rem;
 }
 
-.course-title {
+.course-title01 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   font-weight: bold;
 }
 
-.course-description {
+.course-description01 {
   font-size: 1.2rem;
   line-height: 1.6;
   opacity: 0.95;
@@ -322,7 +322,7 @@
     position: static;
   }
 
-  .course-title {
+  .course-title01 {
     font-size: 2rem;
   }
 

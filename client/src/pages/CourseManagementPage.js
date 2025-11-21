@@ -194,7 +194,7 @@ const CourseManagementPage = () => {
         ) : (
           filteredCourses.map(course => (
             <div key={course._id} className="course-card">
-              <div className="course-image">
+              <div className="course-image01">
                 {course.thumbnailUrl ? (
                   <img src={course.thumbnailUrl} alt={course.title} />
                 ) : (
@@ -205,9 +205,9 @@ const CourseManagementPage = () => {
                 </span>
               </div>
 
-              <div className="course-content">
+              <div className="course-content01">
                 <h3>{course.title}</h3>
-                <p className="course-description">
+                <p className="course-description02">
                   {course.description?.substring(0, 100)}
                   {course.description?.length > 100 ? '...' : ''}
                 </p>

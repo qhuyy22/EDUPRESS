@@ -53,7 +53,7 @@ const HomePage = () => {
         <div className="hero-content">
           <h1>Welcome to Edupress</h1>
           <p>Discover thousands of courses and start learning today!</p>
-          <a href="#courses-section" className="hero-cta">
+          <a href="/courses" className="hero-cta">
             Explore Courses
           </a>
         </div>

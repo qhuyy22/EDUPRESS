@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import authService from '../services/authService';
 import Loader from '../components/Loader';
 import './ResetPasswordPage.css';
@@ -24,7 +24,7 @@ const ResetPasswordPage = () => {
         setError('');
         setSuccess('');
         try {
-            await authService.resetPassword({ email, otp, password });
+            await authService.resetPassword({ email, otp, password });        
             setSuccess('Mật khẩu đã được đặt lại thành công! Bạn sẽ được chuyển hướng đến trang đăng nhập.');
             setTimeout(() => navigate('/login'), 3000);
         } catch (err) {
@@ -38,8 +38,8 @@ const ResetPasswordPage = () => {
         <div className="auth-container">
             <div className="auth-card">
                 <h2>Tạo mật khẩu mới</h2>
-                { alert(error) }
-                { alert(success) }
+                {/* { alert(error) }
+                { alert(success) } */}
                 {loading && <Loader />}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -60,9 +60,9 @@ const ResetPasswordPage = () => {
                             required
                         />
                     </div>
-                    <button type="submit" className="auth-button" disabled={loading}>
-                        Đặt lại mật khẩu
-                    </button>
+                        <button type="submit" className="auth-button" disabled={loading}>
+                            Đặt lại mật khẩu
+                        </button>
                 </form>
             </div>
         </div>

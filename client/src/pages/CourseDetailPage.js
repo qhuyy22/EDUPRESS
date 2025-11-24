@@ -145,7 +145,7 @@ const CourseDetailPage = () => {
               />
               
               <div className="course-price-section">
-                <h2 className="course-price">
+                <h2 className="course-price01">
                   {course.price === 0 ? 'Free' : `$${course.price}`}
                 </h2>
                 
@@ -155,7 +155,7 @@ const CourseDetailPage = () => {
                     disabled={enrolling}
                     className="btn-enroll"
                   >
-                    {enrolling ? 'Enrolling...' : 'Enroll Now'}
+                    {enrolling ? 'Enrolling...' : 'Đăng ký ngay'}
                   </button>
                 )}
                 
@@ -206,14 +206,14 @@ const CourseDetailPage = () => {
           <div className="course-reviews-section">
             <div className="reviews-header">
               <h3>Student Reviews</h3>
-              {isEnrolled && !myReview && (
+              {/* {isEnrolled && !myReview && ( */}
                 <button
                   className="btn-write-review"
                   onClick={() => navigate(`/courses/${id}/review`)}
                 >
                   Write a Review
                 </button>
-              )}
+              {/* )} */}
               {isEnrolled && myReview && (
                 <button
                   className="btn-edit-review"

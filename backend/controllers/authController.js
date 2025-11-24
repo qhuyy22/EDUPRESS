@@ -255,7 +255,7 @@ const verifyOtp = asyncHandler(async (req, res) => {
 
 const resetPassword = asyncHandler(async (req, res) => {
     const { email, otp, password } = req.body;
-
+    
     if (!email || !otp || !password) {
         res.status(400);
         throw new Error('Vui lòng cung cấp đầy đủ thông tin.');

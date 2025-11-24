@@ -1,8 +1,3 @@
-/**
- * CourseCard Component
- * Displays course information in a card format
- */
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './CourseCard.css';
